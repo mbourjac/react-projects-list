@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Marquee } from '../components/Marquee/Marquee';
 import { cn } from '../lib/tailwind';
 import { projectCovers } from './Home.constants';
 
@@ -6,8 +7,17 @@ export const Home = () => {
   const isLastProject = (index: number) => index === projectCovers.length - 1;
 
   return (
-    <main className="min-h-screen max-w-full px-2 py-2">
-      <div>
+    <main className="min-h-screen max-w-full">
+      <Marquee
+        contentCount={2}
+        className="bg-black text-4xl uppercase text-white"
+      >
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad.
+        </p>
+      </Marquee>
+      <div className="px-2 py-2">
         {projectCovers.map(({ id, src, slug, title }, index) => (
           <Link
             key={id}
