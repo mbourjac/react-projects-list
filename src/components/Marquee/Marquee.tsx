@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { cn } from '../../lib/tailwind';
 import { MarqueeContent } from './MarqueeContent';
 
@@ -10,6 +10,7 @@ export type MarqueeProps = {
   isVertical?: boolean;
   isReverse?: boolean;
   isRotate?: boolean;
+  pauseOnHover?: boolean;
   children: ReactNode;
 };
 
@@ -20,6 +21,8 @@ export const Marquee = ({
   children,
   ...restProps
 }: MarqueeProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div
       className={cn(
@@ -28,12 +31,24 @@ export const Marquee = ({
         className,
       )}
       style={{ gap }}
+      onMouseEnter={() => {
+        setIsHovered(true);
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+      }}
     >
-      <MarqueeContent gap={gap} isVertical={isVertical} {...restProps}>
+      <MarqueeContent
+        isHovered={isHovered}
+        gap={gap}
+        isVertical={isVertical}
+        {...restProps}
+      >
         {children}
       </MarqueeContent>
       <MarqueeContent
         isAriaHidden
+        isHovered={isHovered}
         gap={gap}
         isVertical={isVertical}
         {...restProps}

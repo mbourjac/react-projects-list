@@ -39,6 +39,7 @@ export const Home = () => {
       <Marquee
         contentCount={2}
         duration={105}
+        pauseOnHover
         className="fixed bottom-0 bg-primary text-[calc(1rem+1vw)] text-black"
       >
         <p>
